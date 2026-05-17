@@ -782,3 +782,13 @@ Address the Community Portal manifest review error:
 - Use a short user-facing description that still explains the plugin's purpose.
 - Preserve plugin ID, name, author metadata, version, minimum app version, release assets, and runtime behavior.
 - Add automated coverage so the manifest description cannot include the forbidden word again.
+
+### 15.35 Community Portal Release Recommendations
+
+Address the latest Community Portal release and source-code recommendations:
+
+- Replace the deprecated `builtin-modules` dev dependency with a supported alternative based on Node's built-in module metadata.
+- Keep esbuild external module behavior equivalent for Node built-ins and `node:`-prefixed built-ins.
+- Add a GitHub Actions release workflow that builds release assets, uploads `manifest.json`, `main.js`, and `styles.css`, and generates GitHub artifact attestations for those assets.
+- Preserve the existing cross-platform build workflow, release versioning, plugin metadata, and runtime behavior.
+- Add automated coverage for the package dependency cleanup and release attestation workflow presence.

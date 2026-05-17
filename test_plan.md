@@ -78,6 +78,7 @@ This file is the durable coverage index for `feature_list.json`. A feature may o
 | F052 | Harness + contract | `npm run test:harness` and `npm run test:contract` verify `TodayMemoryView.onOpen()` returns a Promise directly instead of using a ReviewBot-flagged async lifecycle signature. |
 | F053 | Build + Obsidian lint + harness + contract | `npm run build`, `npm run lint:obsidian`, `npm run test:harness`, and `npm run test:contract` verify official Obsidian lint coverage, minAppVersion-compatible leaf activation, activeDocument usage, and OpenAI sentence-case UI text. |
 | F054 | Harness + contract | `npm run test:harness` and `npm run test:contract` verify the Community Portal-facing manifest description omits `Obsidian` and stays aligned with package metadata and the README submission example. |
+| F055 | Build + harness + contract + release workflow | `npm run build`, `npm run test:harness`, and `npm run test:contract` verify `builtin-modules` is removed, esbuild uses Node `builtinModules`, and the release workflow uploads and attests release assets. |
 
 ## Verifier
 

@@ -172,7 +172,7 @@ For an Obsidian community plugin release:
 1. Confirm `manifest.json`, `package.json`, and `versions.json` use the same plugin version.
 2. Run `./init.sh`.
 3. Create a GitHub release whose tag exactly matches the plugin version, for example `1.0.0`.
-4. Upload `manifest.json`, `main.js`, and `styles.css` as release assets.
+4. Run the `Release assets` GitHub Actions workflow for the release tag. The workflow uploads `manifest.json`, `main.js`, and `styles.css` and creates artifact attestations for them.
 5. Submit a pull request to `obsidianmd/obsidian-releases` that appends this entry to `community-plugins.json`:
 
 ```json

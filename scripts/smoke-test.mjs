@@ -43,6 +43,32 @@ if (!readText("README.md").includes(`"description": "${manifest.description}"`))
   throw new Error("README submission metadata example must match manifest.json description");
 }
 
+if (packageJson.devDependencies?.["builtin-modules"]) {
+  throw new Error("package.json must not depend on builtin-modules; use Node builtinModules instead");
+}
+
+const esbuildConfigSource = readText("esbuild.config.mjs");
+
+if (!esbuildConfigSource.includes("builtinModules") || esbuildConfigSource.includes("\"builtin-modules\"")) {
+  throw new Error("esbuild.config.mjs must use node:module builtinModules instead of builtin-modules");
+}
+
+const releaseWorkflowSource = readText(".github/workflows/release.yml");
+
+for (const releaseWorkflowSnippet of [
+  "actions/attest@v4",
+  "attestations: write",
+  "artifact-metadata: write",
+  "gh release upload",
+  "manifest.json",
+  "main.js",
+  "styles.css"
+]) {
+  if (!releaseWorkflowSource.includes(releaseWorkflowSnippet)) {
+    throw new Error(`release workflow must support attested release assets: missing ${releaseWorkflowSnippet}`);
+  }
+}
+
 for (const styleSnippet of [
   ".gentle-memories-ai-lead-in",
   "var(--background-secondary)",

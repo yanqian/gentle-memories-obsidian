@@ -433,6 +433,14 @@
       "status": "done",
       "attempts": 1,
       "last_error": ""
+    },
+    {
+      "id": "F055",
+      "description": "Address Community Portal release recommendations by replacing builtin-modules and adding an attested release asset workflow.",
+      "passes": true,
+      "status": "done",
+      "attempts": 1,
+      "last_error": ""
     }
   ]
 }
