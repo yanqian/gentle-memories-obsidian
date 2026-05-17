@@ -173,14 +173,10 @@ For an Obsidian community plugin release:
 2. Run `./init.sh`.
 3. Create a GitHub release whose tag exactly matches the plugin version, for example `1.0.0`.
 4. Run the `Release assets` GitHub Actions workflow for the release tag. The workflow uploads `manifest.json`, `main.js`, and `styles.css` and creates artifact attestations for them.
-5. Submit a pull request to `obsidianmd/obsidian-releases` that appends this entry to `community-plugins.json`:
+5. Submit the plugin through the Obsidian Community developer dashboard at `https://community.obsidian.md` using this repository URL:
 
-```json
-{
-  "id": "gentle-memories",
-  "name": "Gentle Memories",
-  "author": "Armstrong Yan",
-  "description": "Rediscover old journal notes in your vault.",
-  "repo": "yanqian/obsidian-plugin"
-}
+```text
+https://github.com/yanqian/gentle-memories-obsidian
 ```
+
+In the dashboard, label the plugin as `Optional payments` because the optional AI lead-in can connect to paid third-party AI APIs.

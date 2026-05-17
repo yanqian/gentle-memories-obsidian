@@ -39,8 +39,18 @@ if (packageJson.description !== manifest.description) {
   throw new Error("package.json description must match manifest.json description");
 }
 
-if (!readText("README.md").includes(`"description": "${manifest.description}"`)) {
-  throw new Error("README submission metadata example must match manifest.json description");
+const readmeSource = readText("README.md");
+
+if (!readmeSource.includes("https://community.obsidian.md")) {
+  throw new Error("README release instructions must use the Obsidian Community developer dashboard");
+}
+
+if (!readmeSource.includes("https://github.com/yanqian/gentle-memories-obsidian")) {
+  throw new Error("README release instructions must include the current repository URL");
+}
+
+if (!readmeSource.includes("Optional payments")) {
+  throw new Error("README release instructions must disclose the optional AI API payment label");
 }
 
 if (packageJson.devDependencies?.["builtin-modules"]) {
