@@ -761,3 +761,14 @@ Address the earlier ObsidianReviewBot required feedback for `TodayMemoryView.onO
 - Preserve normal memory rendering behavior when a memory is already loaded.
 - Keep Obsidian view lifecycle compatibility and avoid reintroducing ReviewBot's `async method has no await` warning.
 - Add harness or static coverage so the async `TodayMemoryView.onOpen()` signature does not return.
+
+### 15.33 Official Obsidian Lint Gate
+
+Address the latest ObsidianReviewBot and local official lint findings:
+
+- Add the official `eslint-plugin-obsidianmd` lint check to project validation so ReviewBot-style failures are caught before pushing.
+- Replace `Workspace.revealLeaf()` in the memory view workflow with an API compatible with the current `minAppVersion`.
+- Use `activeDocument.createElement()` instead of `document.createElement()` for Markdown render targets so popout windows remain compatible.
+- Use current sentence-case-compliant `OpenAI` UI text for provider options, key labels, notices, and documentation.
+- Preserve AI provider IDs, saved settings migration, request behavior, memory view tab reuse, restored empty view cleanup, and existing modal/view behavior.
+- Add feature coverage evidence for the lint gate and run it from `./init.sh`.

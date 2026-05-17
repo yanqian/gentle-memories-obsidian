@@ -115,7 +115,7 @@ const requiredSettingNames = [
   "Minimum days between startup shows",
   "Enable AI lead-in",
   "AI provider",
-  "Openai key",
+  "OpenAI key",
   "Claude API key",
   "Cache AI lead-ins",
   "Debug mode"
@@ -281,6 +281,7 @@ globalThis.document = {
     return new MockElement();
   }
 };
+globalThis.activeDocument = globalThis.document;
 
 class MockModal {
   constructor(app) {
@@ -585,8 +586,8 @@ function createMockApp(entries = [{
         createdRightLeaves.push(leaf);
         return leaf;
       },
-      revealLeaf(leaf) {
-        this.revealedLeaf = leaf;
+      setActiveLeaf(leaf) {
+        this.activeLeaf = leaf;
       },
       getLeaf(newLeaf) {
         if (newLeaf === "tab") {
@@ -1221,12 +1222,12 @@ const settingNames = () => providerSettingsTab.containerEl.settings.map((setting
 const providerDropdown = () => providerSettingsTab.containerEl.settings
   .find((setting) => setting.name === "AI provider")?.dropdown;
 
-if (!settingNames().includes("Openai key")) {
-  throw new Error("Openai provider settings must show the Openai key input");
+if (!settingNames().includes("OpenAI key")) {
+  throw new Error("OpenAI provider settings must show the OpenAI key input");
 }
 
 if (settingNames().includes("Claude API key")) {
-  throw new Error("Openai provider settings must hide the Claude API key input");
+  throw new Error("OpenAI provider settings must hide the Claude API key input");
 }
 
 await providerDropdown()?.callback("claude");
@@ -1236,8 +1237,8 @@ if (!settingNames().includes("Claude API key")) {
   throw new Error("Claude provider settings must show the Claude API key input after switching providers");
 }
 
-if (settingNames().includes("Openai key")) {
-  throw new Error("Claude provider settings must hide the Openai key input after switching providers");
+if (settingNames().includes("OpenAI key")) {
+  throw new Error("Claude provider settings must hide the OpenAI key input after switching providers");
 }
 
 if (providerSettingsPlugin.settings.openAiApiKey !== "saved-openai-key") {
@@ -1414,7 +1415,7 @@ if (notices.length !== 0) {
 
 await clickModalButton("Memories");
 
-if (!notices.includes("Add an Openai key in settings to generate a reading prompt.")) {
+if (!notices.includes("Add an OpenAI key in settings to generate a reading prompt.")) {
   throw new Error("Manual Memories click without a selected provider API key must show the missing-key notice");
 }
 
@@ -1738,7 +1739,7 @@ try {
 
   await clickViewButton("Generate lead-in");
 
-  if (!notices.some((notice) => notice.includes("Add an Openai key"))) {
+  if (!notices.some((notice) => notice.includes("Add an OpenAI key"))) {
     throw new Error("Unkeyed memory view Generate lead-in action must show the missing-key notice");
   }
 } finally {

@@ -117,12 +117,12 @@ Available plugin settings:
 - `Show on startup`: whether to show a memory after Obsidian starts.
 - `Minimum days between startup shows`: startup display cooldown.
 - `Enable AI lead-in`: controls whether the AI reading prompt button appears.
-- `AI provider`: `Openai` or `Claude`.
-- `Openai key`: token used only when Openai is selected.
+- `AI provider`: `OpenAI` or `Claude`.
+- `OpenAI key`: token used only when OpenAI is selected.
 - `Claude API key`: token used only when Claude is selected.
 - `Cache AI lead-ins`: stores generated reading prompts by `${path}:${contentHash}`.
 
-Existing saved `apiKey` values from earlier versions are treated as `Openai key`.
+Existing saved `apiKey` values from earlier versions are treated as `OpenAI key`.
 
 ## AI Behavior
 
@@ -136,7 +136,7 @@ The generated lead-in is styled separately with Obsidian theme-aware colors so i
 
 Supported providers:
 
-- Openai: uses the Openai chat completions endpoint.
+- OpenAI: uses the OpenAI chat completions endpoint.
 - Claude: uses the Anthropic messages endpoint.
 
 ## Development

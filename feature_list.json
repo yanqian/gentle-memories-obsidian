@@ -417,6 +417,14 @@
       "status": "done",
       "attempts": 1,
       "last_error": ""
+    },
+    {
+      "id": "F053",
+      "description": "Add the official Obsidian lint gate and fix current lint failures for unsupported revealLeaf usage, activeDocument compatibility, and OpenAI UI sentence case.",
+      "passes": true,
+      "status": "done",
+      "attempts": 1,
+      "last_error": ""
     }
   ]
 }

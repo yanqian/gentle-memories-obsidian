@@ -364,7 +364,7 @@ var GentleMemoriesPlugin = class extends import_obsidian.Plugin {
     const existingLeaves = this.app.workspace.getLeavesOfType(TODAY_MEMORY_VIEW_TYPE);
     const existingLeaf = existingLeaves.find((leaf2) => this.isMainWorkspaceLeaf(leaf2));
     if (existingLeaf) {
-      await this.app.workspace.revealLeaf(existingLeaf);
+      this.app.workspace.setActiveLeaf(existingLeaf, { focus: true });
       return existingLeaf;
     }
     if (existingLeaves.length > 0) {
@@ -380,7 +380,7 @@ var GentleMemoriesPlugin = class extends import_obsidian.Plugin {
     } finally {
       this.openingTodayMemoryView = false;
     }
-    await this.app.workspace.revealLeaf(leaf);
+    this.app.workspace.setActiveLeaf(leaf, { focus: true });
     return leaf;
   }
   isMainWorkspaceLeaf(leaf) {
@@ -561,10 +561,10 @@ var GentleMemoriesPlugin = class extends import_obsidian.Plugin {
     return this.settings.aiProvider === "claude" ? this.settings.claudeApiKey : this.settings.openAiApiKey;
   }
   getSelectedProviderName() {
-    return this.settings.aiProvider === "claude" ? "Claude" : "Openai";
+    return this.settings.aiProvider === "claude" ? "Claude" : "OpenAI";
   }
   getSelectedProviderKeyLabel() {
-    return this.settings.aiProvider === "claude" ? "Claude API key" : "Openai key";
+    return this.settings.aiProvider === "claude" ? "Claude API key" : "OpenAI key";
   }
   getSelectedProviderArticle() {
     return this.settings.aiProvider === "claude" ? "a" : "an";
@@ -785,7 +785,7 @@ var TodayMemoryView = class extends import_obsidian.ItemView {
   renderNoteMarkdown(noteContentEl, renderedMarkdown, memory, afterRender) {
     const generation = this.noteRenderGeneration + 1;
     this.noteRenderGeneration = generation;
-    const renderTargetEl = document.createElement("div");
+    const renderTargetEl = activeDocument.createElement("div");
     void import_obsidian.MarkdownRenderer.render(this.app, renderedMarkdown, renderTargetEl, memory.path, this).then(() => {
       var _a;
       if (this.noteRenderGeneration !== generation || ((_a = this.memory) == null ? void 0 : _a.path) !== memory.path) {
@@ -1034,7 +1034,7 @@ var GentleMemoriesSettingTab = class extends import_obsidian.PluginSettingTab {
       });
     });
     new import_obsidian.Setting(containerEl).setName("AI provider").addDropdown((dropdown) => {
-      dropdown.addOption("openai", "Openai").addOption("claude", "Claude").setValue(this.plugin.settings.aiProvider).onChange(async (value) => {
+      dropdown.addOption("openai", "OpenAI").addOption("claude", "Claude").setValue(this.plugin.settings.aiProvider).onChange(async (value) => {
         this.plugin.settings.aiProvider = value === "claude" ? "claude" : "openai";
         await this.plugin.saveSettings();
         this.display();
@@ -1050,7 +1050,7 @@ var GentleMemoriesSettingTab = class extends import_obsidian.PluginSettingTab {
         });
       });
     } else {
-      new import_obsidian.Setting(containerEl).setName("Openai key").addText((text) => {
+      new import_obsidian.Setting(containerEl).setName("OpenAI key").addText((text) => {
         var _a;
         text.inputEl.type = "password";
         text.setValue((_a = this.plugin.settings.openAiApiKey) != null ? _a : "").onChange(async (value) => {

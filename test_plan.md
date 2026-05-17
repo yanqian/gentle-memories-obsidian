@@ -63,8 +63,8 @@ This file is the durable coverage index for `feature_list.json`. A feature may o
 | F037 | Smoke | `npm run smoke` verifies the user-facing ribbon icon opens the manual memory flow without debug mode. |
 | F038 | Smoke | `npm run smoke` verifies the ribbon icon uses `sparkles` while preserving behavior. |
 | F039 | Smoke | `npm run smoke` verifies no unnecessary async parsing, no repeated plugin heading, and flagged UI sentence case. |
-| F040 | Smoke | `npm run smoke` verifies the journal tags placeholder and Openai-facing settings UI text. |
-| F041 | Smoke | `npm run smoke` verifies scanner-compatible `Openai` casing while preserving internal provider behavior. |
+| F040 | Smoke | `npm run smoke` verifies the journal tags placeholder and OpenAI-facing settings UI text. |
+| F041 | Smoke | `npm run smoke` verifies scanner-compatible OpenAI casing while preserving internal provider behavior. |
 | F042 | Verifier | `npm run verify:test-plan` checks every `passes=true` feature has a coverage row in this file. |
 | F043 | Unit + harness + contract | `npm run test:unit`, `npm run test:harness`, and `npm run test:contract` verify explicit test layers and `./init.sh` runs them after build. |
 | F044 | Build + harness + contract | `npm run build`, `npm run test:harness`, and `npm run test:contract` verify the registered persistent sidebar view, sparkles ribbon routing, memory rendering, actions, AI/cache/privacy preservation, and coverage gating. |
@@ -76,6 +76,7 @@ This file is the durable coverage index for `feature_list.json`. A feature may o
 | F050 | Harness + contract | `npm run test:harness` and `npm run test:contract` verify progressive memory view `Show more` preserves the previous scroll anchor instead of jumping to the original note heading. |
 | F051 | Harness + contract | `npm run test:harness` and `npm run test:contract` verify restored empty memory view cleanup avoids the ReviewBot-flagged non-Promise `detach()` await. |
 | F052 | Harness + contract | `npm run test:harness` and `npm run test:contract` verify `TodayMemoryView.onOpen()` returns a Promise directly instead of using a ReviewBot-flagged async lifecycle signature. |
+| F053 | Build + Obsidian lint + harness + contract | `npm run build`, `npm run lint:obsidian`, `npm run test:harness`, and `npm run test:contract` verify official Obsidian lint coverage, minAppVersion-compatible leaf activation, activeDocument usage, and OpenAI sentence-case UI text. |
 
 ## Verifier
 

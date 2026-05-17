@@ -19,6 +19,7 @@ if [ ! -d node_modules ]; then
 fi
 
 npm run build
+npm run lint:obsidian
 npm run test:unit
 npm run test:harness
 npm run test:contract

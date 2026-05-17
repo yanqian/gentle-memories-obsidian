@@ -495,7 +495,7 @@ export default class GentleMemoriesPlugin extends Plugin {
     const existingLeaf = existingLeaves.find((leaf) => this.isMainWorkspaceLeaf(leaf));
 
     if (existingLeaf) {
-      await this.app.workspace.revealLeaf(existingLeaf);
+      this.app.workspace.setActiveLeaf(existingLeaf, { focus: true });
       return existingLeaf;
     }
 
@@ -516,7 +516,7 @@ export default class GentleMemoriesPlugin extends Plugin {
       this.openingTodayMemoryView = false;
     }
 
-    await this.app.workspace.revealLeaf(leaf);
+    this.app.workspace.setActiveLeaf(leaf, { focus: true });
 
     return leaf;
   }
@@ -743,11 +743,11 @@ export default class GentleMemoriesPlugin extends Plugin {
   }
 
   private getSelectedProviderName(): string {
-    return this.settings.aiProvider === "claude" ? "Claude" : "Openai";
+    return this.settings.aiProvider === "claude" ? "Claude" : "OpenAI";
   }
 
   private getSelectedProviderKeyLabel(): string {
-    return this.settings.aiProvider === "claude" ? "Claude API key" : "Openai key";
+    return this.settings.aiProvider === "claude" ? "Claude API key" : "OpenAI key";
   }
 
   private getSelectedProviderArticle(): string {
@@ -1038,7 +1038,7 @@ class TodayMemoryView extends ItemView {
   ): void {
     const generation = this.noteRenderGeneration + 1;
     this.noteRenderGeneration = generation;
-    const renderTargetEl = document.createElement("div");
+    const renderTargetEl = activeDocument.createElement("div");
 
     void MarkdownRenderer
       .render(this.app, renderedMarkdown, renderTargetEl, memory.path, this)
@@ -1387,7 +1387,7 @@ class GentleMemoriesSettingTab extends PluginSettingTab {
       .setName("AI provider")
       .addDropdown((dropdown) => {
         dropdown
-          .addOption("openai", "Openai")
+          .addOption("openai", "OpenAI")
           .addOption("claude", "Claude")
           .setValue(this.plugin.settings.aiProvider)
           .onChange(async (value) => {
@@ -1411,7 +1411,7 @@ class GentleMemoriesSettingTab extends PluginSettingTab {
         });
     } else {
       new Setting(containerEl)
-        .setName("Openai key")
+        .setName("OpenAI key")
         .addText((text) => {
           text.inputEl.type = "password";
           text
