@@ -772,3 +772,13 @@ Address the latest ObsidianReviewBot and local official lint findings:
 - Use current sentence-case-compliant `OpenAI` UI text for provider options, key labels, notices, and documentation.
 - Preserve AI provider IDs, saved settings migration, request behavior, memory view tab reuse, restored empty view cleanup, and existing modal/view behavior.
 - Add feature coverage evidence for the lint gate and run it from `./init.sh`.
+
+### 15.34 Community Portal Manifest Description Fix
+
+Address the Community Portal manifest review error:
+
+- Remove the word `Obsidian` from the release-facing plugin description.
+- Keep `manifest.json`, `package.json`, and README submission metadata aligned.
+- Use a short user-facing description that still explains the plugin's purpose.
+- Preserve plugin ID, name, author metadata, version, minimum app version, release assets, and runtime behavior.
+- Add automated coverage so the manifest description cannot include the forbidden word again.

@@ -10,9 +10,11 @@ for (const file of requiredFiles) {
 }
 
 const manifest = JSON.parse(fs.readFileSync("manifest.json", "utf8"));
+const packageJson = JSON.parse(fs.readFileSync("package.json", "utf8"));
 const mainSource = fs.readFileSync("main.ts", "utf8");
 const stylesSource = fs.readFileSync("styles.css", "utf8");
 const require = createRequire(import.meta.url);
+const readText = (path) => fs.readFileSync(path, "utf8");
 const requiredManifestStrings = ["id", "name", "version", "minAppVersion", "description", "author"];
 
 for (const field of requiredManifestStrings) {
@@ -27,6 +29,18 @@ if (!/^[a-z0-9-]+$/.test(manifest.id)) {
 
 if (manifest.isDesktopOnly !== undefined && typeof manifest.isDesktopOnly !== "boolean") {
   throw new Error("manifest.json isDesktopOnly must be a boolean when present");
+}
+
+if (/\bobsidian\b/i.test(manifest.description)) {
+  throw new Error("manifest.json description must not include Obsidian for Community Portal review");
+}
+
+if (packageJson.description !== manifest.description) {
+  throw new Error("package.json description must match manifest.json description");
+}
+
+if (!readText("README.md").includes(`"description": "${manifest.description}"`)) {
+  throw new Error("README submission metadata example must match manifest.json description");
 }
 
 for (const styleSnippet of [

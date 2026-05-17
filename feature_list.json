@@ -425,6 +425,14 @@
       "status": "done",
       "attempts": 1,
       "last_error": ""
+    },
+    {
+      "id": "F054",
+      "description": "Fix the Community Portal manifest description error by removing the word Obsidian from release-facing descriptions while keeping metadata aligned.",
+      "passes": true,
+      "status": "done",
+      "attempts": 1,
+      "last_error": ""
     }
   ]
 }
