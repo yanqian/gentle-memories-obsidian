@@ -30,7 +30,7 @@ Display history is stored through Obsidian plugin data so the plugin can prefer 
 
 ### From Obsidian Community Plugins
 
-After the plugin is accepted into the Obsidian community plugin directory:
+Install from the [Gentle Memories community plugin page](https://community.obsidian.md/plugins/gentle-memories):
 
 1. Open **Settings -> Community plugins** in Obsidian.
 2. Turn off Restricted mode if needed.
