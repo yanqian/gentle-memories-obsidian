@@ -26,6 +26,14 @@ The plugin has four main parts:
 
 Display history is stored through Obsidian plugin data so the plugin can prefer notes that have not been shown recently.
 
+## Demo
+
+![Gentle Memories memory tab](docs/assets/screenshots/memory-tab.png)
+
+| Memory modal | Settings |
+| --- | --- |
+| ![Gentle Memories memory modal](docs/assets/screenshots/memory-modal.png) | ![Gentle Memories settings](docs/assets/screenshots/settings.png) |
+
 ## Installation
 
 ### From Obsidian Community Plugins
